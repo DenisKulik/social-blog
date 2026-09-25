@@ -1,0 +1,13 @@
+## dev/build outputs
+/build
+
+# Node dependencies
+node_modules
+
+# Misc
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
