@@ -44,5 +44,13 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
     "noImplicitAny": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "verbatimModuleSyntax": false,
+      "moduleDetection": "force"
+    }
   }
 }
