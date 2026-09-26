@@ -1,7 +1,7 @@
 import type { BuildOptions } from "./types/config";
 import type { Configuration } from "webpack";
 import path from "path";
-import { buildLoaders, buildPlugins, buildResolvers } from "./";
+import { buildDevServer, buildLoaders, buildPlugins, buildResolvers } from "./";
 
 export function buildWebpackConfig(options: BuildOptions): Configuration {
   const { paths, mode } = options;
@@ -19,5 +19,7 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
       rules: buildLoaders(),
     },
     resolve: buildResolvers(),
+    devtool: "inline-source-map",
+    devServer: buildDevServer(options),
   };
 }
