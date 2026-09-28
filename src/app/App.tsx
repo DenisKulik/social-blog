@@ -2,10 +2,10 @@ import { lazy, Suspense } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import clsx from "clsx";
 import "./styles/index.scss";
-import { useTheme } from "./theme/useTheme";
+import { useTheme } from "@/app/providers";
 
-const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
-const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
+const AboutPage = lazy(() => import("@/pages/AboutPage"));
+const MainPage = lazy(() => import("@/pages/MainPage"));
 
 const App = () => {
   const { theme, toggleTheme } = useTheme();
