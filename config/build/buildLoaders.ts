@@ -20,11 +20,29 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
     ],
   };
 
+  const svgLoader = {
+    test: /\.svg$/,
+    use: ["@svgr/webpack"],
+  };
+
+  const fileLoader = {
+    test: /\.(png|jpe?g|gif|woff2?|eot|ttf|otf)$/i,
+    use: [
+      {
+        loader: "file-loader",
+        options: {
+          name: "[path][name].[ext]",
+          outputPath: "assets",
+        },
+      },
+    ],
+  };
+
   const tsLoader: RuleSetRule = {
     test: /\.tsx?$/,
     use: "ts-loader",
     exclude: /node_modules/,
   };
 
-  return [tsLoader, cssLoader];
+  return [tsLoader, cssLoader, svgLoader, fileLoader];
 }
