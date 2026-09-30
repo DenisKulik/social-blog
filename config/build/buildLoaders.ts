@@ -40,7 +40,30 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
 
   const tsLoader: RuleSetRule = {
     test: /\.tsx?$/,
-    use: "ts-loader",
+    use: [
+      {
+        loader: "babel-loader",
+        options: {
+          babelrc: false,
+          configFile: false,
+          cacheDirectory: true,
+          presets: [
+            ["@babel/preset-env", { targets: "defaults" }],
+            ["@babel/preset-react", { runtime: "automatic" }],
+          ],
+          plugins: isDev ? ["react-refresh/babel"] : [],
+        },
+      },
+      {
+        loader: "ts-loader",
+        options: {
+          transpileOnly: true,
+          compilerOptions: {
+            jsx: "preserve",
+          },
+        },
+      },
+    ],
     exclude: /node_modules/,
   };
 

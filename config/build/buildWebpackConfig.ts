@@ -8,7 +8,12 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
 
   return {
     mode: mode,
-    entry: paths.entry,
+    entry: isDev
+      ? [
+          "@pmmmwh/react-refresh-webpack-plugin/client/ReactRefreshEntry",
+          paths.entry,
+        ]
+      : paths.entry,
     output: {
       filename: isDev ? "[name].js" : "[name].[contenthash].js",
       path: paths.build,
