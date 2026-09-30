@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import "./styles/index.scss";
 import { AppRouter, useThemeVariables } from "@/app/providers";
 import { Navbar } from "@/widgets/Navbar";
@@ -9,13 +8,11 @@ const App = () => {
 
   return (
     <div className="app" style={themeVariables}>
-      <Suspense fallback="">
-        <Navbar />
-        <div className="contentPage">
-          <Sidebar />
-          <AppRouter />
-        </div>
-      </Suspense>
+      <Navbar />
+      <div className="contentPage">
+        <Sidebar />
+        <AppRouter />
+      </div>
     </div>
   );
 };
