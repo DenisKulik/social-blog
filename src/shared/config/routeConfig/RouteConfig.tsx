@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- конфиг маршрутов с lazy-компонентами, а не Fast Refresh boundary */
 import { lazy } from "react";
 import type { RouteProps } from "react-router-dom";
 

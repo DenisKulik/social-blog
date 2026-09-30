@@ -1,6 +1,5 @@
 import type { BuildOptions } from "./types/config";
 import type { Configuration } from "webpack";
-import path from "path";
 import { buildDevServer, buildLoaders, buildPlugins, buildResolvers } from "./";
 
 export function buildWebpackConfig(options: BuildOptions): Configuration {

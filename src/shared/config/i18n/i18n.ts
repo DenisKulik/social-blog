@@ -8,7 +8,7 @@ export const SUPPORTED_LANGUAGES = ["en", "ru"] as const;
 
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
-i18n
+void i18n
   .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)

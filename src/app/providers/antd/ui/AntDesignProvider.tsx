@@ -14,9 +14,7 @@ interface AntDesignProviderProps {
   children: ReactNode;
 }
 
-export const AntDesignProvider: FC<AntDesignProviderProps> = ({
-  children,
-}) => {
+export const AntDesignProvider: FC<AntDesignProviderProps> = ({ children }) => {
   const { theme } = useTheme();
   const { i18n } = useTranslation();
 

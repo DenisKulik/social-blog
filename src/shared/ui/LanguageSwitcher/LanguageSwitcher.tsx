@@ -3,10 +3,7 @@ import { Button, Dropdown, type MenuProps } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import {
-  SUPPORTED_LANGUAGES,
-  type SupportedLanguage,
-} from "@/shared/config";
+import { SUPPORTED_LANGUAGES, type SupportedLanguage } from "@/shared/config";
 import * as cls from "./LanguageSwitcher.module.scss";
 
 const LANGUAGE_NAMES: Record<SupportedLanguage, string> = {

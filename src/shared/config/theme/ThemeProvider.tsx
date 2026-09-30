@@ -15,7 +15,9 @@ const readStoredTheme = (): Theme => {
     return Theme.Light;
   }
 
-  return (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) ?? Theme.Light;
+  return (
+    (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) ?? Theme.Light
+  );
 };
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {

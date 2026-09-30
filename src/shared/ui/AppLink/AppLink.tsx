@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- файл экспортирует enum AppLinkTheme вместе с компонентом; allowExportNames в плагине не применяется к export enum */
 import type { FC } from "react";
 import { Link, type LinkProps } from "react-router-dom";
 import clsx from "clsx";
