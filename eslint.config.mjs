@@ -76,9 +76,30 @@ export default tseslint.config(
   },
 
   {
-    files: ["config/**/*.ts", "webpack.config.ts"],
+    // Моки для jest пишутся в CommonJS: их грузит require, а не
+    // ESM-конвейер ts-jest.
+    files: ["config/jest/mocks/**/*.js"],
+    languageOptions: {
+      sourceType: "commonjs",
+      globals: globals.node,
+    },
+  },
+
+  {
+    // Конфиги читают import.meta.dirname, а jest.config.ts лежит
+    // в корне и не попадает под маску config/**.
+    files: ["config/**/*.ts", "*.config.ts"],
     languageOptions: {
       globals: globals.node,
+    },
+  },
+
+  {
+    // Тесты и setup-файл обращаются к describe/it/expect/jest,
+    // которых нет в globals.browser.
+    files: ["**/*.test.{ts,tsx}", "config/jest/setupTests.ts"],
+    languageOptions: {
+      globals: globals.jest,
     },
   },
 
