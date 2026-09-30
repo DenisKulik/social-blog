@@ -6,6 +6,7 @@ node_modules
 
 # Misc
 .idea
+.vscode
 
 # Local env files
 .env
