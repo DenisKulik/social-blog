@@ -4,8 +4,8 @@
   width: 100%;
   height: var(--navbar-height);
   padding: 20px;
-  background: var(--inverted-bg-color);
-  border-bottom: 1px solid rgb(0 0 0 / 15%);
+  background: var(--surface-color);
+  border-bottom: 1px solid var(--divider-color);
   box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
 }
 
@@ -15,4 +15,8 @@
 
 .mainLink {
   margin-right: 15px;
+}
+
+.languageSwitcher {
+  margin-left: 5px;
 }

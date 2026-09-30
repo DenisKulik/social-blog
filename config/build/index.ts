@@ -1,4 +1,4 @@
 export * from "./buildDevServer";
-export * from "./buildPlugin";
+export * from "./buildPlugins";
 export * from "./buildLoaders";
 export * from "./buildResolvers";

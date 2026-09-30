@@ -1,20 +1,21 @@
-import clsx from "clsx";
 import "./styles/index.scss";
-import { useTheme } from "@/app/providers";
-import AppRouter from "./providers/router";
+import { AppRouter, useThemeVariables } from "@/app/providers";
 import { Navbar } from "@/widgets/Navbar";
 import { Sidebar } from "@/widgets/Sidebar";
+import { Suspense } from "react";
 
 const App = () => {
-  const { theme } = useTheme();
+  const themeVariables = useThemeVariables();
 
   return (
-    <div className={clsx("app", theme)}>
-      <Navbar />
-      <div className="contentPage">
-        <Sidebar />
-        <AppRouter />
-      </div>
+    <div className="app" style={themeVariables}>
+      <Suspense fallback="">
+        <Navbar />
+        <div className="contentPage">
+          <Sidebar />
+          <AppRouter />
+        </div>
+      </Suspense>
     </div>
   );
 };
