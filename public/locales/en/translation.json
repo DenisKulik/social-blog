@@ -2,6 +2,8 @@
   "Главная страница": "Main page",
   "О нас": "About",
   "Страница не найдена": "Page not found",
+  "Произошла непредвиденная ошибка": "An unexpected error occurred",
   "Переключить язык": "Switch language",
-  "Язык": "English"
+  "Язык": "English",
+  "throw error": "throw error"
 }
