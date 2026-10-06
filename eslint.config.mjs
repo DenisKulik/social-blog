@@ -9,7 +9,7 @@ const UPPER_LAYERS = ["app", "pages", "widgets", "features", "entities"];
 
 export default tseslint.config(
   {
-    ignores: ["build/**", "node_modules/**", "public/**"],
+    ignores: ["build/**", "storybook-static/**", "node_modules/**", "public/**"],
   },
 
   js.configs.recommended,

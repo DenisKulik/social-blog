@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import App from "./app/App";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { ThemeProvider } from "@/shared/config/theme";
 import { AntDesignProvider } from "@/app/providers";
 
@@ -15,7 +15,7 @@ if (!container) {
 
 const root = createRoot(container);
 root.render(
-  <BrowserRouter>
+  <HashRouter>
     <ErrorBoundary>
       <ThemeProvider>
         <AntDesignProvider>
@@ -23,5 +23,5 @@ root.render(
         </AntDesignProvider>
       </ThemeProvider>
     </ErrorBoundary>
-  </BrowserRouter>,
+  </HashRouter>,
 );
