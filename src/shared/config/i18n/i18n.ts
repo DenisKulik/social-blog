@@ -29,7 +29,7 @@ void i18n
     },
 
     backend: {
-      loadPath: "/locales/{{lng}}/{{ns}}.json",
+      loadPath: "locales/{{lng}}/{{ns}}.json",
     },
   });
 

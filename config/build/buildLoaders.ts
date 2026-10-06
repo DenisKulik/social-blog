@@ -49,7 +49,7 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
           cacheDirectory: true,
           presets: [
             ["@babel/preset-env", { targets: "defaults" }],
-            ["@babel/preset-react", { runtime: "automatic" }],
+            ["@babel/preset-react", { runtime: "automatic", development: isDev }],
           ],
           plugins: isDev ? ["react-refresh/babel"] : [],
         },

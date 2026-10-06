@@ -1,4 +1,5 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 import {
   DefinePlugin,
   HotModuleReplacementPlugin,
@@ -14,6 +15,19 @@ export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInsta
   return [
     new HTMLWebpackPlugin({
       template: paths.html,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          // Отдаём static из public (в dev его раздаёт webpack-dev-server,
+          // в prod копируем в build, чтобы работал fetch локалей и т.д.).
+          from: paths.public,
+          to: ".",
+          globOptions: {
+            ignore: ["**/index.html"],
+          },
+        },
+      ],
     }),
     new ProgressPlugin(),
     new MiniCssExtractPlugin({
