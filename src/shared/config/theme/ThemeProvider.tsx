@@ -15,22 +15,13 @@ const readStoredTheme = (): Theme => {
     return Theme.Light;
   }
 
-  return (
-    (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) ?? Theme.Light
-  );
+  return (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) ?? Theme.Light;
 };
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(readStoredTheme);
 
-  const contextValue = useMemo<ThemeContextProps>(
-    () => ({ theme, setTheme }),
-    [theme],
-  );
+  const contextValue = useMemo<ThemeContextProps>(() => ({ theme, setTheme }), [theme]);
 
-  return (
-    <ThemeContext.Provider value={contextValue}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>;
 };

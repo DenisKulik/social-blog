@@ -17,9 +17,7 @@ export const Sidebar = ({ className }: Props) => {
   };
 
   return (
-    <div
-      className={clsx(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
-    >
+    <div className={clsx(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}>
       <Button className={cls.toggle} type="text" onClick={onToggle}>
         <MenuOutlined />
       </Button>

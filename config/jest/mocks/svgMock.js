@@ -1,8 +1,6 @@
 const React = require("react");
 
-const SvgMock = React.forwardRef((props, ref) =>
-  React.createElement("svg", { ref, ...props }),
-);
+const SvgMock = React.forwardRef((props, ref) => React.createElement("svg", { ref, ...props }));
 
 SvgMock.displayName = "SvgMock";
 

@@ -38,9 +38,7 @@ describe("ErrorBoundary", () => {
     renderWithBoundary(<Thrower />);
 
     expect(screen.getByText(ERROR_PAGE_TEXT)).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: RELOAD_BUTTON_TEXT }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: RELOAD_BUTTON_TEXT })).toBeInTheDocument();
   });
 
   it("логирует ошибку и информацию о компоненте", () => {
@@ -76,9 +74,7 @@ describe("ErrorBoundary с BugButton", () => {
   it("до нажатия показывает только кнопку", () => {
     renderWithBoundary(<BugButton />);
 
-    expect(
-      screen.getByRole("button", { name: "throw error" }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "throw error" })).toBeInTheDocument();
     expect(screen.queryByText(ERROR_PAGE_TEXT)).not.toBeInTheDocument();
   });
 
@@ -90,11 +86,7 @@ describe("ErrorBoundary с BugButton", () => {
     await user.click(screen.getByRole("button", { name: "throw error" }));
 
     expect(screen.getByText(ERROR_PAGE_TEXT)).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: RELOAD_BUTTON_TEXT }),
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: "throw error" }),
-    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: RELOAD_BUTTON_TEXT })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "throw error" })).not.toBeInTheDocument();
   });
 });

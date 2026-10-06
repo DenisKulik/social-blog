@@ -24,10 +24,7 @@ export const AntDesignProvider: FC<AntDesignProviderProps> = ({ children }) => {
     <ConfigProvider
       locale={ANT_DESIGN_LOCALES[language] ?? enUS}
       theme={{
-        algorithm:
-          theme === Theme.Dark
-            ? antdTheme.darkAlgorithm
-            : antdTheme.defaultAlgorithm,
+        algorithm: theme === Theme.Dark ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
       }}
     >
       {children}

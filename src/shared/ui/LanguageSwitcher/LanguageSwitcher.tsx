@@ -17,8 +17,7 @@ interface Props {
 
 export const LanguageSwitcher: FC<Props> = ({ className }) => {
   const { i18n, t } = useTranslation();
-  const currentLanguage = (i18n.resolvedLanguage ??
-    i18n.language) as SupportedLanguage;
+  const currentLanguage = (i18n.resolvedLanguage ?? i18n.language) as SupportedLanguage;
 
   const items: MenuProps["items"] = SUPPORTED_LANGUAGES.map((language) => ({
     key: language,

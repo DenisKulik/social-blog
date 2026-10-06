@@ -9,11 +9,7 @@ interface Props {
 const NotFoundPage = ({ className }: Props) => {
   const { t } = useTranslation();
 
-  return (
-    <div className={clsx(cls.NotFoundPage, [className])}>
-      {t("Страница не найдена")}
-    </div>
-  );
+  return <div className={clsx(cls.NotFoundPage, [className])}>{t("Страница не найдена")}</div>;
 };
 
 export default NotFoundPage;

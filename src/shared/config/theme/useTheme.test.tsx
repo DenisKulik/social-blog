@@ -1,11 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import type { ReactNode } from "react";
-import {
-  LOCAL_STORAGE_THEME_KEY,
-  Theme,
-  ThemeProvider,
-  useTheme,
-} from "./index";
+import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeProvider, useTheme } from "./index";
 
 const wrapper = ({ children }: { children: ReactNode }) => (
   <ThemeProvider>{children}</ThemeProvider>

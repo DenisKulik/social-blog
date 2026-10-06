@@ -8,14 +8,7 @@
 // `import * as cls` превращается в {} и все cls.foo дают undefined.
 
 // Свойства, которые не должны выглядеть как классы.
-const IGNORED_KEYS = new Set([
-  "then",
-  "constructor",
-  "toJSON",
-  "nodeType",
-  "tagName",
-  "$$typeof",
-]);
+const IGNORED_KEYS = new Set(["then", "constructor", "toJSON", "nodeType", "tagName", "$$typeof"]);
 
 const handler = {
   get(target, key) {
