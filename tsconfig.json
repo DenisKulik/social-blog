@@ -17,7 +17,8 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["node"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@test/*": ["./config/jest/*"]
     },
 
     // Other Outputs
@@ -47,6 +48,7 @@
     "skipLibCheck": true,
     "noImplicitAny": true
   },
+  "include": [".storybook/**/*", "src", "config", "*.config.ts"],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs",

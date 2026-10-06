@@ -7,6 +7,8 @@
     "start": "webpack serve --env port=3000",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -38,6 +40,10 @@
     "@babel/preset-react": "^8.0.1",
     "@eslint/js": "^10.0.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.3",
+    "@storybook/addon-a11y": "10.6.1",
+    "@storybook/addon-docs": "10.6.1",
+    "@storybook/addon-themes": "10.6.1",
+    "@storybook/react-webpack5": "10.6.1",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/dom": "^10.0.0",
     "@testing-library/jest-dom": "^7.0.1",
@@ -66,6 +72,7 @@
     "react-refresh": "^0.19.0",
     "sass": "^1.105.0",
     "sass-loader": "^17.0.1",
+    "storybook": "10.6.1",
     "style-loader": "^4.0.0",
     "stylelint": "^17.15.0",
     "stylelint-config-prettier-scss": "^1.0.0",
@@ -83,5 +90,12 @@
     "webpack-cli": "^7.2.3",
     "webpack-dev-server": "6.0.0"
   },
-  "packageManager": "pnpm@10.5.2"
+  "packageManager": "pnpm@10.5.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sass-embedded-linux-x64-gnu",
+      "@swc/core"
+    ]
+  }
 }

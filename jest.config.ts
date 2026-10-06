@@ -46,6 +46,10 @@ const config: Config = {
     // Тот же алиас, что и в webpack: buildResolvers отдаёт "@" -> src.
     "^@/(.*)$": path.join(SRC, "$1"),
 
+    // Тестовые хелперы (testI18n, render с провайдерами) лежат рядом
+    // с jest-конфигом, а не в src: в прод-код они не должны попадать.
+    "^@test/(.*)$": path.join(JEST_DIR, "$1"),
+
     // CSS Modules: cls.foo возвращает "foo", поэтому в тестах видно
     // исходное имя класса, а не хеш.
     "\\.module\\.s?css$": mock("cssModuleMock.js"),
@@ -58,6 +62,11 @@ const config: Config = {
 
     // Статика из file-loader.
     "\\.(png|jpe?g|gif|webp|avif|woff2?|eot|ttf|otf)$": mock("fileMock.js"),
+
+    // CJS-сборка @ant-design/icons тянет ESM-файл напрямую:
+    // require("@ant-design/colors/es/generate"). В Jest без ESM-конвейера
+    // это падает, поэтому перенаправляем на CJS- twin из ./lib.
+    "^@ant-design/colors/es/(.*)$": "@ant-design/colors/lib/$1",
   },
 
   clearMocks: true,

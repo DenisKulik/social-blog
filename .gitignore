@@ -1,6 +1,7 @@
 ## dev/build outputs
 /build
 /coverage
+/storybook-static
 
 # Node dependencies
 node_modules

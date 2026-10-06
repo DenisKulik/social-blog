@@ -32,15 +32,9 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.flat["recommended-latest"].rules,
 
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
-      ],
+      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 
-      "@typescript-eslint/consistent-type-imports": [
-        "error",
-        { fixStyle: "inline-type-imports" },
-      ],
+      "@typescript-eslint/consistent-type-imports": ["error", { fixStyle: "inline-type-imports" }],
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
@@ -86,8 +80,19 @@ export default tseslint.config(
   },
 
   {
-    // Конфиги читают import.meta.dirname, а jest.config.ts лежит
-    // в корне и не попадает под маску config/**.
+    // Конфиги и превью Storybook исполняются в node (main.ts) либо в iframe,
+    // поэтому им доступны node-глобалы; stories экспортируют только
+    // константы (meta/варианты), react-refresh тут не нужен.
+    files: [".storybook/**/*.{ts,tsx}", "**/*.stories.{ts,tsx}"],
+    languageOptions: {
+      globals: globals.node,
+    },
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
+
+  {
     files: ["config/**/*.ts", "*.config.ts"],
     languageOptions: {
       globals: globals.node,

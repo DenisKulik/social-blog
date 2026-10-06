@@ -31,5 +31,9 @@ globalThis.ResizeObserver ??= class ResizeObserver {
 
 // i18next-http-backend тянет переводы из /locales. В тестах переводы
 // задаются напрямую, поэтому сеть не нужна.
-globalThis.fetch ??= () =>
-  Promise.reject(new Error("fetch is not available in tests"));
+globalThis.fetch ??= () => Promise.reject(new Error("fetch is not available in tests"));
+
+// DefinePlugin в webpack подставляет эту константу на этапе сборки,
+// в Jest её нет — объявляем глобально, иначе любой модуль, импортирующий
+// shared/config, падает на ReferenceError.
+(globalThis as typeof globalThis & { __IS_DEV__?: boolean }).__IS_DEV__ ??= false;
