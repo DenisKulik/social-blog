@@ -24,6 +24,7 @@
   "license": "ISC",
   "dependencies": {
     "@ant-design/icons": "^6.3.4",
+    "@reduxjs/toolkit": "^2.13.0",
     "antd": "^6.6.5",
     "clsx": "^2.1.1",
     "i18next": "^26.4.2",
@@ -32,6 +33,7 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-i18next": "^17.0.15",
+    "react-redux": "^9.3.0",
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
