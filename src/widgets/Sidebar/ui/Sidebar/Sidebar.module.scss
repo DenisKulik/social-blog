@@ -12,6 +12,14 @@
 
 .collapsed {
   width: var(--sidebar-width-collapsed);
+
+  .navItem {
+    padding: 8px 19px;
+  }
+
+  .navLabel {
+    display: none;
+  }
 }
 
 .toggle {
@@ -19,13 +27,44 @@
   margin-left: 20px;
 }
 
-.switchers {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
+.nav {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
-  padding-left: 20px;
+  gap: 4px;
+  padding: 0 12px;
+  margin-top: 16px;
+}
+
+.navItem {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 19px;
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    color: var(--primary-color);
+    background: var(--fill-hover-color);
+  }
+}
+
+.active {
+  color: var(--primary-color);
+  background: var(--fill-hover-color);
+
+  .navIcon {
+    color: var(--primary-color);
+  }
+}
+
+.navIcon {
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+.navLabel {
+  white-space: nowrap;
 }

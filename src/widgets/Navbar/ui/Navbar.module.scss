@@ -9,14 +9,13 @@
   box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
 }
 
-.links {
+.switchers {
+  display: flex;
+  gap: 8px;
+  align-items: center;
   margin-left: auto;
 }
 
-.mainLink {
-  margin-right: 15px;
-}
-
-.languageSwitcher {
-  margin-left: 5px;
+.themeSwitcher {
+  margin-left: 4px;
 }
