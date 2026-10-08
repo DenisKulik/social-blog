@@ -29,7 +29,13 @@ export const Navbar = ({ className }: Props) => {
         <Button type="primary" onClick={onOpenAuthModal}>
           {t("Войти")}
         </Button>
-        <Modal title={t("Войти")} open={isAuthModalOpen} onCancel={onCloseAuthModal} footer={null} centered>
+        <Modal
+          title={t("Войти")}
+          open={isAuthModalOpen}
+          onCancel={onCloseAuthModal}
+          footer={null}
+          centered
+        >
           {t("Форма авторизации")}
         </Modal>
       </div>
