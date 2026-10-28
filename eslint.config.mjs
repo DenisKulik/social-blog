@@ -80,6 +80,16 @@ export default tseslint.config(
   },
 
   {
+    // json-server и скрипты в scripts/ — CommonJS на node:
+    // им доступны require/__dirname и остальные node-глобалы.
+    files: ["json-server/**/*.js", "scripts/**/*.js"],
+    languageOptions: {
+      sourceType: "commonjs",
+      globals: globals.node,
+    },
+  },
+
+  {
     // Конфиги и превью Storybook исполняются в node (main.ts) либо в iframe,
     // поэтому им доступны node-глобалы; stories экспортируют только
     // константы (meta/варианты), react-refresh тут не нужен.
