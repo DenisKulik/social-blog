@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { counterReducer } from "@/entities/Counter";
+import { userReducer } from "@/entities/User";
 import type { StateSchema } from "./StateSchema";
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
+  user: userReducer,
 });
 
 export const createReduxStore = (initialState?: Partial<StateSchema>) =>

@@ -1,51 +1,64 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { counterActions, selectCounterValue } from "@/entities/Counter";
-import { StoreProvider, useAppDispatch, useAppSelector } from "@/app/providers/StoreProvider";
+import { StoreProvider, useAppSelector } from "@/app/providers/StoreProvider";
 import type { StateSchema } from "@/app/providers/StoreProvider";
 
-const CounterViaStore = () => {
-  const value = useAppSelector(selectCounterValue);
-  const dispatch = useAppDispatch();
+const UserViaStore = () => {
+  const authData = useAppSelector((state) => state.user.authData);
 
-  return (
-    <div>
-      <span data-testid="value">{value}</span>
-      <button onClick={() => dispatch(counterActions.increment())}>+</button>
-    </div>
-  );
+  return <span data-testid="username">{authData?.username ?? "нет данных"}</span>;
 };
 
 describe("StoreProvider", () => {
-  it("накапливает состояние внутри одного store", async () => {
-    const user = userEvent.setup();
-
-    render(
-      <StoreProvider>
-        <CounterViaStore />
-        <CounterViaStore />
-      </StoreProvider>,
-    );
-
-    expect(screen.getAllByTestId("value")).toHaveLength(2);
-    expect(screen.getAllByTestId("value").map((node) => node.textContent)).toEqual(["0", "0"]);
-
-    await user.click(screen.getAllByRole("button")[0]!);
-
-    expect(screen.getAllByTestId("value").map((node) => node.textContent)).toEqual(["1", "1"]);
-  });
-
-  it("гидратит store из initialState", () => {
+  it("компоненты читают состояние одного store", () => {
     const initialState: Partial<StateSchema> = {
-      counter: { value: 5 },
+      user: { authData: { id: "1", username: "ivan" } },
     };
 
     render(
       <StoreProvider initialState={initialState}>
-        <CounterViaStore />
+        <UserViaStore />
+        <UserViaStore />
       </StoreProvider>,
     );
 
-    expect(screen.getByTestId("value")).toHaveTextContent("5");
+    expect(screen.getAllByTestId("username")).toHaveLength(2);
+    expect(screen.getAllByTestId("username").map((node) => node.textContent)).toEqual([
+      "ivan",
+      "ivan",
+    ]);
+  });
+
+  it("гидратит store из initialState", () => {
+    const initialState: Partial<StateSchema> = {
+      user: { authData: { id: "2", username: "petr" } },
+    };
+
+    render(
+      <StoreProvider initialState={initialState}>
+        <UserViaStore />
+      </StoreProvider>,
+    );
+
+    expect(screen.getByTestId("username")).toHaveTextContent("petr");
+  });
+
+  it("создаёт новый store для каждого рендера", () => {
+    const { unmount } = render(
+      <StoreProvider initialState={{ user: { authData: { id: "1", username: "ivan" } } }}>
+        <UserViaStore />
+      </StoreProvider>,
+    );
+
+    expect(screen.getByTestId("username")).toHaveTextContent("ivan");
+
+    unmount();
+
+    render(
+      <StoreProvider>
+        <UserViaStore />
+      </StoreProvider>,
+    );
+
+    expect(screen.getByTestId("username")).toHaveTextContent("нет данных");
   });
 });

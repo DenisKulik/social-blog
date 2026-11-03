@@ -6,6 +6,9 @@
   "Переключить язык": "Switch language",
   "Язык": "English",
   "Войти": "Sign in",
-  "Форма авторизации": "Sign in form",
+  "Имя пользователя": "Username",
+  "Пароль": "Password",
+  "Введите имя пользователя": "Enter username",
+  "Введите пароль": "Enter password",
   "throw error": "throw error"
 }

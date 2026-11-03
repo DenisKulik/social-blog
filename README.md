@@ -41,7 +41,7 @@ src/
   pages/     страницы (MainPage, AboutPage, NotFoundPage)
   widgets/   крупные блоки (Navbar, Sidebar, PageError)
   features/  бизнес-действия (пока пусто)
-  entities/  доменные модели (Counter)
+  entities/  доменные модели (User)
   shared/    переиспользуемые конфиги и UI (i18n, тема, роуты, AppLink, Loader)
 ```
 

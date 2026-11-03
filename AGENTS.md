@@ -41,7 +41,7 @@ src/
   pages/     MainPage, AboutPage, NotFoundPage
   widgets/   Navbar, Sidebar, PageError
   features/  (зарезервировано под бизнес-действия)
-  entities/  Counter (model/, ui/)
+  entities/  User (model/)
   shared/    config (i18n, routeConfig, theme), ui (AppLink, Loader, PageLoader, ...)
 ```
 
@@ -104,7 +104,7 @@ src/
 
 ### Состояние (Redux Toolkit)
 
-- Слайс и селекторы — в `entities/<Name>/model/` (`counterSlice.ts`, `selectors.ts`),
+- Слайс и селекторы — в `entities/<Name>/model/` (`userSlice.ts`, `selectors.ts`),
   схема состояния — `app/providers/StoreProvider/config/StateSchema.ts`.
 - Диспатчить/читать только через `useAppDispatch` / `useAppSelector` из
   `@/app/providers/StoreProvider`, не через сырой `useDispatch/useSelector`.
