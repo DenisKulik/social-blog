@@ -22,7 +22,7 @@ export const LoginModal: FC<Props> = ({ className, isOpen, onClose }) => {
       footer={null}
       centered
     >
-      <LoginForm />
+      <LoginForm onSubmit={onClose} />
     </Modal>
   );
 };

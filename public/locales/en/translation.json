@@ -6,9 +6,11 @@
   "Переключить язык": "Switch language",
   "Язык": "English",
   "Войти": "Sign in",
+  "Выйти": "Sign out",
   "Имя пользователя": "Username",
   "Пароль": "Password",
   "Введите имя пользователя": "Enter username",
   "Введите пароль": "Enter password",
+  "Не удалось войти": "Failed to sign in",
   "throw error": "throw error"
 }

@@ -5,6 +5,9 @@ import { useTranslation } from "react-i18next";
 import * as cls from "./Navbar.module.scss";
 import { LanguageSwitcher, ThemeSwitcher } from "@/shared/ui";
 import { LoginModal } from "@/features/AuthByUsername";
+import { useAppDispatch, useAppSelector } from "@/app/providers/StoreProvider/lib/hooks";
+import { getUserAuthData } from "@/entities/User/model/selectors/getUserAuthData/getUserAuthData";
+import { userActions } from "@/entities/User/model/slice/userSlice";
 
 interface Props {
   className?: string;
@@ -13,6 +16,8 @@ interface Props {
 export const Navbar = ({ className }: Props) => {
   const { t } = useTranslation();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const authData = useAppSelector(getUserAuthData);
+  const dispatch = useAppDispatch();
 
   const onOpenAuthModal = () => {
     setIsAuthModalOpen(true);
@@ -21,6 +26,24 @@ export const Navbar = ({ className }: Props) => {
   const onCloseAuthModal = () => {
     setIsAuthModalOpen(false);
   };
+
+  const onLogout = () => {
+    dispatch(userActions.logout());
+  };
+
+  if (authData) {
+    return (
+      <nav className={clsx(cls.navbar, className)}>
+        <div className={cls.switchers}>
+          <LanguageSwitcher />
+          <ThemeSwitcher className={cls.themeSwitcher} />
+          <Button type="primary" onClick={onLogout}>
+            {t("Выйти")}
+          </Button>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <nav className={clsx(cls.navbar, className)}>

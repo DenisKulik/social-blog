@@ -1,2 +1,2 @@
-export { LoginForm, type LoginFormValues } from "./ui/LoginForm/LoginForm";
-export { LoginModal } from "./ui/LoginModal/LoginModal";
+export { LoginModal } from "./ui";
+export { loginReducer, type LoginSchema } from "./model";
