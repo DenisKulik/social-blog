@@ -3,6 +3,7 @@ import type { Decorator } from "@storybook/react-webpack5";
 import { MemoryRouter } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
 import { AntDesignProvider, useThemeVariables } from "../src/app/providers/antd";
+import { StoreProvider } from "../src/app/providers/StoreProvider";
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from "../src/shared/config/theme";
 import { storybookI18n } from "./i18n";
 import "../src/app/styles/index.scss";
@@ -58,11 +59,13 @@ const withAppProviders: Decorator = (Story, context) => {
 
   return (
     <I18nextProvider i18n={storybookI18n}>
-      <ThemeController theme={theme} onThemeChange={handleThemeChange}>
-        <MemoryRouter>
-          <Story />
-        </MemoryRouter>
-      </ThemeController>
+      <StoreProvider>
+        <ThemeController theme={theme} onThemeChange={handleThemeChange}>
+          <MemoryRouter>
+            <Story />
+          </MemoryRouter>
+        </ThemeController>
+      </StoreProvider>
     </I18nextProvider>
   );
 };
