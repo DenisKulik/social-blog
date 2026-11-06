@@ -1,21 +1,26 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { userReducer } from "@/entities/User";
-import { loginReducer } from "@/features/AuthByUsername";
 import { api } from "@/shared/api";
+import { createReducerManager } from "./reducerManager";
 import type { StateSchema } from "./StateSchema";
 
-const rootReducer = combineReducers({
+const staticReducers = {
   user: userReducer,
-  loginForm: loginReducer,
   [api.reducerPath]: api.reducer,
-});
+};
 
-export const createReduxStore = (initialState?: Partial<StateSchema>) =>
-  configureStore({
-    reducer: rootReducer,
+export const createReduxStore = (initialState?: Partial<StateSchema>) => {
+  const reducerManager = createReducerManager(staticReducers);
+
+  const store = configureStore({
+    reducer: reducerManager.reduce,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
     ...(initialState ? { preloadedState: initialState } : {}),
   });
 
+  return Object.assign(store, { reducerManager });
+};
+
+export type AppStore = ReturnType<typeof createReduxStore>;
 export type RootState = StateSchema;
-export type AppDispatch = ReturnType<typeof createReduxStore>["dispatch"];
+export type AppDispatch = AppStore["dispatch"];

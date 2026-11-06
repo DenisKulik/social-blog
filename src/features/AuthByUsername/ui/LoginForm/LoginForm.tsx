@@ -3,8 +3,9 @@ import { Alert, Button, Form, Input } from "antd";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import * as cls from "./LoginForm.module.scss";
+import { DynamicModuleLoader } from "@/app/providers/StoreProvider";
 import { useAppDispatch, useAppSelector } from "@/app/providers/StoreProvider/lib/hooks";
-import { getLoginState, loginActions, useLoginByUsernameMutation } from "../../model";
+import { getLoginState, loginActions, loginReducer, useLoginByUsernameMutation } from "../../model";
 
 export interface LoginFormValues {
   username: string;
@@ -16,7 +17,9 @@ interface Props {
   onSubmit?: (values: LoginFormValues) => void;
 }
 
-export const LoginForm: FC<Props> = memo(({ className, onSubmit }) => {
+const loginFormReducers = { loginForm: loginReducer };
+
+const LoginFormContent: FC<Props> = memo(({ className, onSubmit }) => {
   const { t } = useTranslation();
   const { username, password } = useAppSelector(getLoginState);
   const dispatch = useAppDispatch();
@@ -86,3 +89,9 @@ export const LoginForm: FC<Props> = memo(({ className, onSubmit }) => {
     </Form>
   );
 });
+
+export const LoginForm: FC<Props> = (props) => (
+  <DynamicModuleLoader reducers={loginFormReducers}>
+    <LoginFormContent {...props} />
+  </DynamicModuleLoader>
+);
