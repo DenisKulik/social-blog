@@ -29,6 +29,33 @@ globalThis.ResizeObserver ??= class ResizeObserver {
   disconnect() {}
 };
 
+// @rc-component/form использует MessageChannel для отложенных задач формы,
+// а jsdom его не предоставляет. Достаточно setTimeout-очереди.
+globalThis.MessageChannel ??= class MessageChannel {
+  port1 = { onmessage: null as ((event: MessageEvent) => void) | null };
+
+  port2 = {
+    postMessage: () => {
+      setTimeout(() => this.port1.onmessage?.({ data: null } as MessageEvent), 0);
+    },
+  };
+} as unknown as typeof globalThis.MessageChannel;
+
+// fetchBaseQuery создаёт Request перед вызовом fetch, а jsdom его не даёт.
+globalThis.Request ??= class Request {
+  url: string;
+  method: string;
+  headers: Headers;
+  body: BodyInit | null;
+
+  constructor(input: string | URL, init: RequestInit = {}) {
+    this.url = String(input);
+    this.method = init.method ?? "GET";
+    this.headers = new Headers(init.headers);
+    this.body = init.body ?? null;
+  }
+} as unknown as typeof globalThis.Request;
+
 // i18next-http-backend тянет переводы из /locales. В тестах переводы
 // задаются напрямую, поэтому сеть не нужна.
 globalThis.fetch ??= () => Promise.reject(new Error("fetch is not available in tests"));
