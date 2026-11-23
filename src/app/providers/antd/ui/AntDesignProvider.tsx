@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from "react";
+import { useMemo, type FC, type ReactNode } from "react";
 import { ConfigProvider, theme as antdTheme } from "antd";
 import enUS from "antd/locale/en_US";
 import ruRU from "antd/locale/ru_RU";
@@ -20,13 +20,15 @@ export const AntDesignProvider: FC<AntDesignProviderProps> = ({ children }) => {
 
   const language = i18n.resolvedLanguage ?? i18n.language;
 
+  const themeConfig = useMemo(
+    () => ({
+      algorithm: theme === Theme.Dark ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
+    }),
+    [theme],
+  );
+
   return (
-    <ConfigProvider
-      locale={ANT_DESIGN_LOCALES[language] ?? enUS}
-      theme={{
-        algorithm: theme === Theme.Dark ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
-      }}
-    >
+    <ConfigProvider locale={ANT_DESIGN_LOCALES[language] ?? enUS} theme={themeConfig}>
       {children}
     </ConfigProvider>
   );

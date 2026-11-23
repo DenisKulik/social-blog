@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useCallback, useState } from "react";
 import clsx from "clsx";
 import { Button } from "antd";
 import { useTranslation } from "react-i18next";
@@ -22,17 +22,17 @@ export const Navbar = ({ className }: Props) => {
   const authData = useAppSelector(getUserAuthData);
   const dispatch = useAppDispatch();
 
-  const onOpenAuthModal = () => {
+  const onOpenAuthModal = useCallback(() => {
     setIsAuthModalOpen(true);
-  };
+  }, []);
 
-  const onCloseAuthModal = () => {
+  const onCloseAuthModal = useCallback(() => {
     setIsAuthModalOpen(false);
-  };
+  }, []);
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     dispatch(userActions.logout());
-  };
+  }, [dispatch]);
 
   if (authData) {
     return (
