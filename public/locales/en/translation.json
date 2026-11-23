@@ -1,6 +1,7 @@
 {
   "Главная страница": "Main page",
   "О нас": "About",
+  "Профиль": "Profile",
   "Страница не найдена": "Page not found",
   "Произошла непредвиденная ошибка": "An unexpected error occurred",
   "Переключить язык": "Switch language",
@@ -12,5 +13,6 @@
   "Введите имя пользователя": "Enter username",
   "Введите пароль": "Enter password",
   "Не удалось войти": "Failed to sign in",
+  "Войдите в систему, чтобы просматривать профиль пользователя": "Sign in to view the user profile",
   "throw error": "throw error"
 }

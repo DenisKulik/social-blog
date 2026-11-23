@@ -6,6 +6,7 @@ import NotFoundPage from "@/pages/NotFoundPage";
 
 const MainPage = lazy(() => import("@/pages/MainPage"));
 const AboutPage = lazy(() => import("@/pages/AboutPage"));
+const ProfilePage = lazy(() => import("@/pages/ProfilePage"));
 
 export const RouteConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.MAIN]: {
@@ -15,6 +16,10 @@ export const RouteConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.ABOUT]: {
     path: AppRoutes.ABOUT,
     element: <AboutPage />,
+  },
+  [AppRoutes.PROFILE]: {
+    path: AppRoutes.PROFILE,
+    element: <ProfilePage />,
   },
   [AppRoutes.NOT_FOUND]: {
     path: "*",

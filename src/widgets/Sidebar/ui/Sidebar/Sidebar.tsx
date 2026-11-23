@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { Button } from "antd";
-import { HomeOutlined, InfoCircleOutlined, MenuOutlined } from "@ant-design/icons";
+import { HomeOutlined, InfoCircleOutlined, MenuOutlined, UserOutlined } from "@ant-design/icons";
 import { clsx } from "clsx";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
@@ -16,6 +16,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { to: AppRoutes.MAIN, labelKey: "Главная страница", icon: <HomeOutlined /> },
   { to: AppRoutes.ABOUT, labelKey: "О нас", icon: <InfoCircleOutlined /> },
+  { to: AppRoutes.PROFILE, labelKey: "Профиль", icon: <UserOutlined /> },
 ];
 
 interface Props {

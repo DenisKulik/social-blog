@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { profileReducer } from "@/entities/Profile";
 import { userReducer } from "@/entities/User";
 import { api } from "@/shared/api";
 import { createReducerManager } from "./reducerManager";
@@ -6,6 +7,7 @@ import type { StateSchema } from "./StateSchema";
 
 const staticReducers = {
   user: userReducer,
+  profile: profileReducer,
   [api.reducerPath]: api.reducer,
 };
 

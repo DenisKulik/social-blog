@@ -38,10 +38,10 @@ Storybook и прод-бандл. Push в `main` дополнительно де
 src/
   app/       App, providers (antd, ErrorBoundary, router, StoreProvider),
              routes/RouteConfig, styles, types/global.d.ts
-  pages/     MainPage, AboutPage, NotFoundPage
+  pages/     MainPage, AboutPage, ProfilePage, NotFoundPage
   widgets/   Navbar, Sidebar, PageError
   features/  (зарезервировано под бизнес-действия)
-  entities/  User (model/)
+  entities/  User, Profile (model/: slice, selectors, services, types)
   shared/    config (i18n, routeConfig, theme), ui (AppLink, Loader, PageLoader, ...)
 ```
 
@@ -84,6 +84,24 @@ src/
   строку явный комментарий-дизейбл с причиной (см. `AppLink.tsx:1`,
   `RouteConfig.tsx:1`).
 - Иконки — `@ant-design/icons`, компоненты UI — `antd`.
+
+### Мемоизация
+
+React Compiler **не подключён** (Babel 8 несовместим с `babel-plugin-react-compiler@1.0.0`:
+он молча пропускает компоненты с дефолтами в деструктуризации пропсов, см.
+react#37406). Мемоизация — ручная:
+
+- `useMemo` — для значения контекста, создания store, дорогих вычислений и
+  объектов, уходящих в пропсы memo-компонентов.
+- `useCallback` — для колбэков, передаваемых в `memo`-компоненты или попадающих
+  в зависимости эффектов.
+- `memo` — только для компонентов с дорогим рендером и стабильными пропсами;
+  дешёвые листовые компоненты не оборачивать.
+- Статичные массивы/объекты — константы на уровне модуля (`NAV_ITEMS`,
+  `loginFormReducers`), чтобы не ломать ссылочное равенство.
+- Производные данные из Redux — `createSelector`, а не `useMemo` в компоненте.
+- Пересмотреть решение, когда выйдет `babel-plugin-react-compiler` с поддержкой
+  Babel 8.
 
 ### SCSS / форматирование
 
